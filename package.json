@@ -1,0 +1,29 @@
+{
+  "name": "TTU API",
+  "version": "3.0.0",
+  "description": "TTU REST API for external integrationL",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "rest",
+    "api",
+    "sequelize",
+    "mysql"
+  ],
+  "author": "bezkoder",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-hateoas-links": "^1.2.0",
+    "mysql2": "^2.0.2",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.22.3"
+  }
+}

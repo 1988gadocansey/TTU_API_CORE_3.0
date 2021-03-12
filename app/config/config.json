@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "gadocansey",
+    "password": "1988Gadocansey",
+    "database": "ttu",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "gadocansey",
+    "password": "1988Gadocansey",
+    "database": "ttu",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "webmaster",
+    "password": "PRINT45dull",
+    "database": "srms",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
