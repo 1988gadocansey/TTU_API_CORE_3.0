@@ -20,7 +20,7 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single Tutorial with an id
-exports.findOne = (req, res) => {
+exports.findOne = (res) => {
 
 };
 
