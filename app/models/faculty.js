@@ -1,43 +1,36 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Faculty extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('Faculty', {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    FACULTY: {
+      type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    FACCODE: {
+      type: DataTypes.STRING(50),
+      allowNull: true
+    },
+    BANK: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    FHND_CODE: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    SLUG: {
+      type: DataTypes.STRING(100),
+      allowNull: false
     }
-  };
-  Faculty.init({
-    code: DataTypes.STRING,
-    name: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Faculty',
+    tableName: 'Faculty',
+    timestamps: false,
+
   });
-
-  Faculty.associate = (models) => {
-    Faculty.hasMany(models.Department, {
-      foreignKey: 'faculty_id',
-      as: 'department',
-    });
-  };
-
-  Faculty.associate = (models) => {
-    Faculty.belongsTo(models.College, {
-      foreignKey: 'college_id',
-      onDelete: 'CASCADE',
-    });
-  };
-
-
-
-
-
-  return Faculty;
 };

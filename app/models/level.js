@@ -1,34 +1,35 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Level extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('Level', {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    name: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+      unique: "name"
+    },
+    slug: {
+      type: DataTypes.STRING(50),
+      allowNull: false
     }
-  };
-  Level.init({
-    name: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Level',
+    tableName: 'Level',
+    timestamps: false,
+    indexes: [
+
+      {
+        name: "name",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "name" },
+        ]
+      },
+    ]
   });
-
-  Level.associate = (models) => {
-    Level.hasMany(models.Student, {
-      foreignKey: 'level_id',
-      as: 'student',
-    });
-  };
-
-
-
-
-  return Level;
 };

@@ -1,20 +1,26 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
+const indexRoutes = require('./app/routes/index')
+const programmeRoutes = require('./app/routes/programme.routes')
+const studentRoutes = require('./app/routes/student.routes')
+
 
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
+// var corsOptions = {
+//   origin: "http://localhost:8081"
+// };
 
-app.use(cors(corsOptions));
+//accept all connections
+app.use(cors("*"))
+
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
+app.use(express.json());
+
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
 
@@ -24,14 +30,17 @@ db.sequelize.sync();
 //   console.log("Drop and re-sync db.");
 // });
 
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "TTU Rest API ver 2.0." });
-});
+// simple route 
+app.use("/api/v1", indexRoutes)
+app.use("/api/v1/programmes", programmeRoutes)
+app.use("/api/v1/students", studentRoutes)
 
-require("./app/routes/turorial.routes")(app);
-require("./app/routes/student.routes")(app);
-require("./app/routes/programme.routes")(app);
+
+
+// require("./app/routes/turorial.routes")(app);
+// require("./app/routes/student.routes")(app);
+// require("./app/routes/programme.routes")(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8000;

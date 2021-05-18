@@ -1,41 +1,41 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Department extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('Department', {
+    ID: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    DEPTCODE: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    FACCODE: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    DEPARTMENT: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    DHND_CODE: {
+      type: DataTypes.STRING(11),
+      allowNull: false
     }
-  };
-  Department.init({
-    code: DataTypes.STRING,
-    name: DataTypes.STRING,
-    dhnd_code: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Department',
+    tableName: 'Department',
+    timestamps: false,
+    indexes: [
+      {
+        name: "id",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "ID" },
+        ]
+      },
+    ]
   });
-
-  Department.associate = (models) => {
-    Department.hasMany(models.Programme, {
-      foreignKey: 'department_id',
-      as: 'programme',
-    });
-  };
-
-  Department.associate = (models) => {
-    Department.belongsTo(models.Faculty, {
-      foreignKey: 'faculty_id',
-      onDelete: 'CASCADE',
-    });
-  };
-
-
-  return Department;
 };
