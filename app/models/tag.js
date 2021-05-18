@@ -1,34 +1,39 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('institution', {
+  return sequelize.define('Tag', {
     ID: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true
     },
-    NAME: {
+    GROUPING: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    LOGO: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    ADDRESS: {
+    TAG: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    KIND: {
+    SGDEF: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    USE_LEVELS: {
+    PLDEF: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    SHOW: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    ACADHEAD: {
       type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'institution',
+    tableName: 'Tag',
     timestamps: false
   });
 };

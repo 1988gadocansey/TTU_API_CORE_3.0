@@ -1,49 +1,43 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('courses', {
-    PROGRAMMECODE: {
+  return sequelize.define('Address', {
+    ID: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    NAME: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    OPTIONS: {
+    LINE1: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    YR: {
+    LINE2: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    SEM: {
+    LINE3: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    KIND: {
+    LINE4: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    COURSE: {
+    LINE5: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    CODE: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    COURSECODE: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    COURSENAME: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    CREDITS: {
+    LINE6: {
       type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'courses',
+    tableName: 'Address',
     timestamps: false
   });
 };
