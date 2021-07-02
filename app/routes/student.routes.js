@@ -4,6 +4,7 @@ let router = require("express").Router();
 
 // show all students
 router.get("/", students.findAll);
+router.get("/id", students.findOne);
 
 router.post('/', async (req, res) => {
     const savedStudent = new Student({

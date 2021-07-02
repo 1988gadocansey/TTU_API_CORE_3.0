@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       unique: "NAME"
     },
     ACCOUNT_NUMBER: {
-      type: DataTypes.STRING(222),
+      type: DataTypes.BIGINT,
       allowNull: false,
       unique: "NAME"
     },

@@ -1,13 +1,13 @@
 const db = require("../models");
-const Student = db.students;
+const Product = db.PaymentProduct
 const Op = db.Sequelize.Op;
 
 // Retrieve all Students from the database.
 exports.findAll = (req, res) => {
-    const title = req.query.title;
-    var condition = title ? { INDEXNO: { [Op.INDEXNO]: `%${title}%` } } : null;
+    const code = req.query.code;
+    var condition = code ? { code: { [Op.like]: `%${code}%` } } : null;
 
-    Student.findAll({ where: condition })
+    Product.findAll({attributes: ['code', 'payment_name','accept_part_payment','currency','cot','deadline','usage_instruction']},{ where: condition })
         .then(data => {
             res.send(data);
         })
@@ -19,19 +19,19 @@ exports.findAll = (req, res) => {
         });
 };
 
-// Find a single Student with an id
+// Find a single Tutorial with an id
 exports.findOne = (req, res, next) => {
     const  id= req.query.id;
 
 
-    Student.findOne({where: id}
+    Product.findOne({attributes: ['code', 'payment_name','accept_part_payment','currency','cot','deadline','usage_instruction']},{where: id}
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                err.message || "Some error occurred while retrieving student."
+                    err.message || "Some error occurred while retrieving student."
             })
         })
     )

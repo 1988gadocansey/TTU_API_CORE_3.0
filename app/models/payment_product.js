@@ -7,7 +7,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-
+    code: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      comment: "codes"
+    },
     purpose: {
       type: DataTypes.STRING(50),
       allowNull: false,
